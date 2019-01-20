@@ -1,0 +1,80 @@
+class StudentRecord():
+
+    def __init__(self, name, phone, college):
+        self.name = name
+        self.phone = phone
+        self.college = college
+
+    def display_data(self):
+        print('Student name is: ', self.name)
+        print('Student phone is: ', self.phone)
+        print('Student college is: ', self.college)
+
+# gurjas_obj = StudentRecord('Gurjas', 0, 'DIT')
+# anushka_obj = StudentRecord('Anushka', 1234567890, 'UPES')
+#
+# # gurjas_obj.display_data()
+# # anushka_obj.display_data()
+#
+# list_objects = []
+# list_objects.append(gurjas_obj)
+# list_objects.append(anushka_obj)
+#
+# for obj in list_objects:
+#     # print(obj)
+#     obj.display_data()
+
+# ## dynamically saving objects to list
+#
+values = int(input('How many values, you want to insert?'))
+list_objects = []
+for i in range(0, values):
+    print('Enter the details of the student')
+    name = input('Enter the name of the student')
+    phone = int(input('Enter the phone number of the student'))
+    college = input('Enter the college name of the student')
+    obj = StudentRecord(name, phone, college)
+    list_objects.append(obj)
+
+
+def findRecords(key, value):
+    global list_objects
+    students = []
+    if (key == 'name'):
+        for obj in list_objects:
+            if (obj.name == value):
+                students.append(obj)
+    elif (key == 'college'):
+        for obj in list_objects:
+            if (obj.college == value):
+                students.append(obj)
+    else:
+        value = int(value)
+        for obj in list_objects:
+            if (obj.phone == value):
+                students.append(obj)
+
+    if (len(students)>0):
+        print("Print all the students records")
+        for obj in students:
+            obj.display_data()
+            print("*"*10)
+    else:
+        print("No student record found")
+
+key = input('Enter the key for which you want to search the records.')
+
+class_values = ['name', 'phone', 'college']
+
+key_exists = False
+for value in class_values:
+    if (value == key):
+        key_exists = True
+        break
+
+if (key_exists):
+    print("Key exists. Fetching records")
+    value = input('Enter the value for which you want to search the records.')
+    findRecords(key, value)
+else:
+    print("Sorry no key found. Please try another parameters.")
